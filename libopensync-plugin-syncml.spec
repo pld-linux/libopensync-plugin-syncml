@@ -5,8 +5,7 @@ Version:	0.19
 Release:	0.1
 License:	LGPL
 Group:		Libraries
-#Source0:	http://www.opensync.org/attachment/wiki/download/%{name}-%{version}.tar.gz?rev=&format=raw
-Source0:	%{name}-%{version}.tar.gz
+Source0:	http://www.opensync.org/attachment/wiki/download/%{name}-%{version}.tar.gz?format=raw
 # Source0-md5:	925ee4cfa0a7e308065174f56e3c10d0
 URL:		http://www.opensync.org/
 BuildRequires:	glib2-devel >= 1:2.0

@@ -12,6 +12,7 @@ BuildRequires:	glib2-devel >= 1:2.0
 BuildRequires:	libopensync-devel >= %{version}
 BuildRequires:	libsyncml-devel >= 0.4.1
 BuildRequires:	libxml2 >= 1:2.0
+Obsoletes:	multisync-syncml
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description

@@ -1,5 +1,5 @@
 Summary:	OpenSync SyncML plugin
-Summary(pl.UTF-8):   Wtyczka SyncML do OpenSync
+Summary(pl.UTF-8):	Wtyczka SyncML do OpenSync
 Name:		libopensync-plugin-syncml
 Version:	0.19
 Release:	0.1

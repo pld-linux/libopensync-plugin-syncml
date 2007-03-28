@@ -1,16 +1,16 @@
 Summary:	OpenSync SyncML plugin
 Summary(pl.UTF-8):	Wtyczka SyncML do OpenSync
 Name:		libopensync-plugin-syncml
-Version:	0.19
+Version:	0.22
 Release:	0.1
 License:	LGPL
 Group:		Libraries
-Source0:	http://www.opensync.org/attachment/wiki/download/%{name}-%{version}.tar.gz?format=raw
-# Source0-md5:	925ee4cfa0a7e308065174f56e3c10d0
+Source0:	http://www.opensync.org/attachment/wiki/download/%{name}-%{version}.tar.bz2?format=raw
+# Source0-md5:	8ffa3233ad28fb3ead324d88573f0c38
 URL:		http://www.opensync.org/
 BuildRequires:	glib2-devel >= 1:2.0
 BuildRequires:	libopensync-devel >= %{version}
-BuildRequires:	libsyncml-devel >= 0.4.1
+BuildRequires:	libsyncml-devel >= 0.4.4
 BuildRequires:	libxml2 >= 1:2.0
 Obsoletes:	multisync-syncml
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)

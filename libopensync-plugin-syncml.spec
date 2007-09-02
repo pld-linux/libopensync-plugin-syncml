@@ -3,15 +3,18 @@ Summary(pl.UTF-8):	Wtyczka SyncML do OpenSync
 Name:		libopensync-plugin-syncml
 Version:	0.22
 Release:	1
-License:	LGPL
+License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://www.opensync.org/attachment/wiki/download/%{name}-%{version}.tar.bz2?format=raw
 # Source0-md5:	8ffa3233ad28fb3ead324d88573f0c38
 URL:		http://www.opensync.org/
 BuildRequires:	glib2-devel >= 1:2.0
 BuildRequires:	libopensync-devel >= %{version}
+BuildRequires:	libsoup-devel >= 2.2.91
 BuildRequires:	libsyncml-devel >= 0.4.4
-BuildRequires:	libxml2 >= 1:2.0
+BuildRequires:	libxml2-devel >= 1:2.0
+BuildRequires:	openobex-devel >= 1.1
+BuildRequires:	pkgconfig
 Obsoletes:	multisync-syncml
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -46,12 +49,17 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+rm -f $RPM_BUILD_ROOT%{_libdir}/opensync/plugins/*.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
-%attr(755,root,root) %{_libdir}/opensync/plugins/*.so
-%{_libdir}/opensync/plugins/*.la
-%{_datadir}/opensync/defaults/*
+%attr(755,root,root) %{_libdir}/opensync/plugins/syncml_plugin.so
+%{_datadir}/opensync/defaults/syncml-http-server
+%{_datadir}/opensync/defaults/syncml-obex-client
+
+# devel
+#%{_includedir}/opensync-1.0/opensync/syncml_plugin.h

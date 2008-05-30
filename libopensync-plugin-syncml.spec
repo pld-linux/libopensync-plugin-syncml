@@ -2,7 +2,7 @@ Summary:	OpenSync SyncML plugin
 Summary(pl.UTF-8):	Wtyczka SyncML do OpenSync
 Name:		libopensync-plugin-syncml
 Version:	0.36
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://www.opensync.org/download/releases/0.36/%{name}-%{version}
@@ -69,10 +69,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README
+%doc AUTHORS
 %attr(755,root,root) %{_libdir}/opensync-1.0/plugins/syncml-plugin.so
 %{_datadir}/opensync-1.0/defaults/syncml-http-server
 %{_datadir}/opensync-1.0/defaults/syncml-obex-client
+%{_datadir}/opensync-1.0/defaults/syncml-http-client
 
 # devel
 #%{_includedir}/opensync-1.0/opensync/syncml_plugin.h

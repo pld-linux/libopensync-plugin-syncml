@@ -1,19 +1,24 @@
 Summary:	OpenSync SyncML plugin
 Summary(pl.UTF-8):	Wtyczka SyncML do OpenSync
 Name:		libopensync-plugin-syncml
-Version:	0.22
+Version:	0.36
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	http://www.opensync.org/attachment/wiki/download/%{name}-%{version}.tar.bz2?format=raw
-# Source0-md5:	8ffa3233ad28fb3ead324d88573f0c38
+Source0:	http://www.opensync.org/download/releases/0.36/%{name}-%{version}
+# Source0-md5:	2ca73708fcf150941ef77a8db185c2bb
 URL:		http://www.opensync.org/
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	cmake
 BuildRequires:	glib2-devel >= 1:2.0
-BuildRequires:	libopensync-devel >= %{version}
+BuildRequires:	libopensync-devel >= 1:%{version}
 BuildRequires:	libsoup-devel >= 2.2.91
 BuildRequires:	libsyncml-devel >= 0.4.4
 BuildRequires:	libxml2-devel >= 1:2.0
 BuildRequires:	openobex-devel >= 1.1
+BuildRequires:	libtool
+BuildRequires:	rpmbuild(macros) >= 1.385
 BuildRequires:	pkgconfig
 Obsoletes:	multisync-syncml
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -40,16 +45,24 @@ Ten pakiet zawiera wtyczkę SyncML dla szkieletu OpenSync.
 %setup -q
 
 %build
-%configure
+mkdir build
+cd build
+%cmake \
+	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
+%if "%{_lib}" != "lib"
+	-DLIB_SUFFIX=64 \
+%endif
+	../
+
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
+%{__make} -C build install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/opensync/plugins/*.la
+#rm -f $RPM_BUILD_ROOT%{_libdir}/opensync/plugins/*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -57,9 +70,9 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
-%attr(755,root,root) %{_libdir}/opensync/plugins/syncml_plugin.so
-%{_datadir}/opensync/defaults/syncml-http-server
-%{_datadir}/opensync/defaults/syncml-obex-client
+%attr(755,root,root) %{_libdir}/opensync-1.0/plugins/syncml-plugin.so
+%{_datadir}/opensync-1.0/defaults/syncml-http-server
+%{_datadir}/opensync-1.0/defaults/syncml-obex-client
 
 # devel
 #%{_includedir}/opensync-1.0/opensync/syncml_plugin.h

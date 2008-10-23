@@ -1,12 +1,12 @@
 Summary:	OpenSync SyncML plugin
 Summary(pl.UTF-8):	Wtyczka SyncML do OpenSync
 Name:		libopensync-plugin-syncml
-Version:	0.36
-Release:	2
+Version:	0.37
+Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	http://www.opensync.org/download/releases/0.36/%{name}-%{version}
-# Source0-md5:	2ca73708fcf150941ef77a8db185c2bb
+Source0:	http://www.opensync.org/download/releases/0.37/%{name}-%{version}
+# Source0-md5:	4a7690b7d34ee1a1937fab9e746483aa
 URL:		http://www.opensync.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -62,18 +62,14 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} -C build install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-#rm -f $RPM_BUILD_ROOT%{_libdir}/opensync/plugins/*.la
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS
-%attr(755,root,root) %{_libdir}/opensync-1.0/plugins/syncml-plugin.so
-%{_datadir}/opensync-1.0/defaults/syncml-http-server
-%{_datadir}/opensync-1.0/defaults/syncml-obex-client
-%{_datadir}/opensync-1.0/defaults/syncml-http-client
+%attr(755,root,root) %{_libdir}/libopensync1/plugins/syncml-plugin.so
+%{_datadir}/libopensync1/defaults/syncml-obex-client
 
 # devel
 #%{_includedir}/opensync-1.0/opensync/syncml_plugin.h

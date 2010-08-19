@@ -1,12 +1,12 @@
 Summary:	OpenSync SyncML plugin
 Summary(pl.UTF-8):	Wtyczka SyncML do OpenSync
 Name:		libopensync-plugin-syncml
-Version:	0.37
+Version:	0.39
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	http://www.opensync.org/download/releases/0.37/%{name}-%{version}
-# Source0-md5:	4a7690b7d34ee1a1937fab9e746483aa
+Source0:	http://opensync.org/download/releases/%{version}/%{name}-%{version}.tar.bz2
+# Source0-md5:	02922ebeec8b9eab77b1cffbb19c81be
 URL:		http://www.opensync.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -14,12 +14,12 @@ BuildRequires:	cmake
 BuildRequires:	glib2-devel >= 1:2.0
 BuildRequires:	libopensync-devel >= 1:%{version}
 BuildRequires:	libsoup-devel >= 2.2.91
-BuildRequires:	libsyncml-devel >= 0.4.4
+BuildRequires:	libsyncml-devel >= 0.5.0
+BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.0
 BuildRequires:	openobex-devel >= 1.1
-BuildRequires:	libtool
-BuildRequires:	rpmbuild(macros) >= 1.385
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 1.385
 Obsoletes:	multisync-syncml
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -47,12 +47,12 @@ Ten pakiet zawiera wtyczkę SyncML dla szkieletu OpenSync.
 %build
 mkdir build
 cd build
-%cmake \
+%cmake .. \
+	-DCMAKE_BUILD_TYPE=%{!?debug:Release}%{?debug:Debug} \
 	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
-%if "%{_lib}" != "lib"
-	-DLIB_SUFFIX=64 \
+%if "%{_lib}" == "lib64"
+	-DLIB_SUFFIX=64
 %endif
-	../
 
 %{__make}
 
@@ -69,7 +69,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS
 %attr(755,root,root) %{_libdir}/libopensync1/plugins/syncml-plugin.so
+%{_datadir}/libopensync1/defaults/syncml-http-client
+%{_datadir}/libopensync1/defaults/syncml-http-server
 %{_datadir}/libopensync1/defaults/syncml-obex-client
-
-# devel
-#%{_includedir}/opensync-1.0/opensync/syncml_plugin.h

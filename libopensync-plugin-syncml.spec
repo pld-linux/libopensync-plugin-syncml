@@ -20,7 +20,7 @@ BuildRequires:	libxml2-devel >= 1:2.0
 BuildRequires:	openobex-devel >= 1.1
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.385
-Obsoletes:	multisync-syncml
+Obsoletes:	multisync-syncml < 0.90
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
